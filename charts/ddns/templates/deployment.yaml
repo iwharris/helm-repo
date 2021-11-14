@@ -23,7 +23,7 @@ spec:
             - name: CRON
               value: "{{ .Values.cron }}"
             - name: DELETE_ON_STOP
-              value: {{ .Values.delete_on_stop }}
+              value: "{{ .Values.delete_on_stop }}"
             - name: API_KEY
               valueFrom:
                 secretKeyRef:

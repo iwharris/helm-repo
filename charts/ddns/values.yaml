@@ -6,4 +6,4 @@ subdomain: mysubdomain
 # How often to run the script
 cron: "*/5 * * * *"
 # If true, deletes the DNS record when the container is stopped
-delete_on_stop: false
+delete_on_stop: "false"
