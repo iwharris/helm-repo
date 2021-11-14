@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ddns.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "ddns.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ddns.fullname" . }}
+    spec:
+      containers:
+        - name: {{ include "ddns.fullname" . }}
+          image: oznu/cloudflare-ddns:latest
+          env:
+            - name: ZONE
+              value: {{ .Values.zone }}
+            - name: SUBDOMAIN
+              value: {{ .Values.subdomain }}
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "ddns.fullname" . }}
+                  key: CLOUDFLARE_API_TOKEN

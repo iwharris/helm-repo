@@ -1,0 +1,5 @@
+secrets:
+  # This API token must have the "Edit DNS" permission for the zone below
+  cloudflare_api_token: REDACTED
+zone: example.com
+subdomain: mysubdomain
