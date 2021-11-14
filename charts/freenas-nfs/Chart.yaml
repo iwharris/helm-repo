@@ -1,6 +1,6 @@
 apiVersion: v2
 name: freenas-nfs
-description: Customized democratic-csi chart for FreeNas
+description: Customized democratic-csi chart for FreeNAS
 
 # A chart can be either an 'application' or a 'library' chart.
 #
