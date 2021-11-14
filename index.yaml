@@ -3,6 +3,16 @@ entries:
   ddns:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-11-14T01:52:50.202730883Z"
+    description: Dynamic DNS using Cloudflare domain
+    digest: fe250fc1dc494f46d0f130ba5309e2267a9f4b9d280e403fe8c47771a9d7ff53
+    name: ddns
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/ddns-0.1.1/ddns-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-14T01:32:06.005314664Z"
     description: Dynamic DNS using Cloudflare domain
     digest: 94a5381d6170efaa435f33c97e50b4c3d8f944a222804a3d8f847ce2f1e1bf54
