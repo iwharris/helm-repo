@@ -3,3 +3,7 @@ secrets:
   cloudflare_api_token: REDACTED
 zone: example.com
 subdomain: mysubdomain
+# How often to run the script
+cron: "*/5 * * * *"
+# If true, deletes the DNS record when the container is stopped
+delete_on_stop: false
