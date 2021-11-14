@@ -3,6 +3,20 @@ entries:
   freenas-nfs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-11-14T00:58:39.949164565Z"
+    dependencies:
+    - name: democratic-csi
+      repository: https://democratic-csi.github.io/charts/
+      version: 0.8.3
+    description: Customized democratic-csi chart for FreeNAS
+    digest: afa1749e3611cd507f302fbfa234bf36b0ba114fead20fba0f92e32638a0702e
+    name: freenas-nfs
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/freenas-nfs-0.1.1/freenas-nfs-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-13T18:09:50.317695203Z"
     dependencies:
     - name: democratic-csi
