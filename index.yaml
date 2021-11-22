@@ -60,4 +60,15 @@ entries:
     urls:
     - https://github.com/iwharris/helm-repo/releases/download/freenas-nfs-0.1.0/freenas-nfs-0.1.0.tgz
     version: 0.1.0
+  pihole:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-22T03:56:29.190996293Z"
+    description: A simple pi-hole deployment for homelab
+    digest: be822a6b1aaeb73057b0305cad84abc79706bd321a0f46069495ffbb64a10937
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/pihole-0.1.0/pihole-0.1.0.tgz
+    version: 0.1.0
 generated: "2021-11-13T18:09:50.018199823Z"
