@@ -34,7 +34,7 @@ metadata:
     {{ toYaml .annotations | nindent 4 }}
 spec:
     externalTrafficPolicy: {{ .externalTrafficPolicy }}
-    loadBalancerIP: {{ .loadBalancerIp }}
+    loadBalancerIP: {{ .loadBalancerIP }}
     ports:
         - port: 53
           targetPort: 53
