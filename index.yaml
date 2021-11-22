@@ -63,6 +63,16 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-11-22T04:06:18.951382345Z"
+    description: A simple pi-hole deployment for homelab
+    digest: 35ecc34dd3f46425007d6524c7961c42948a828cb0eb98abbb8aad52ba84a473
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/pihole-0.1.1/pihole-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-22T03:56:29.190996293Z"
     description: A simple pi-hole deployment for homelab
     digest: be822a6b1aaeb73057b0305cad84abc79706bd321a0f46069495ffbb64a10937
