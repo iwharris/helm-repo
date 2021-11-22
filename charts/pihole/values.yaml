@@ -1,0 +1,30 @@
+service:
+  annotations:
+    metallb.universe.tf/address-pool: production
+    metallb.universe.tf/allow-shared-ip: pihole-svc  
+  externalTrafficPolicy: Local
+  loadBalancerIP: 192.168.1.2
+  serviceType: LoadBalancer
+config:
+  secrets:
+  - name: WEBPASSWORD
+    value: pihole
+  env:
+  - name: TZ
+    value: "America/Edmonton"
+  - name: PIHOLE_DNS_
+    value: "1.1.1.1;8.8.8.8"
+deployment:
+  image: "pihole/pihole:latest"
+  restartPolicy: Always
+storage:
+  - name: pihole 
+    size: 1Gi
+    accessMode: readWriteOnce
+    storageClass: freenas-nfs-csi
+    mountPath: "/etc/pihole"
+  - name: dnsmasq
+    size: 100Mi
+    accessMode: readWriteOnce
+    storageClass: freenas-nfs-csi
+    mountPath: "/etc/dnsmasq.d"

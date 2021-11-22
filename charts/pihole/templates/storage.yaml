@@ -1,0 +1,15 @@
+{{- range .Values.storage }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+    name: {{ include "pihole.fullname" $ }}-{{ .name }}
+    annotations:
+        volume.beta.kubernetes.io/storage-class: {{ .storageClass | quote }}
+spec:
+    accessModes:
+        - {{ .accessMode }}
+    resources:
+        requests:
+            storage: {{ .size }}
+---
+{{- end }}
