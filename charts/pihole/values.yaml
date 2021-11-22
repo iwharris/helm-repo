@@ -25,11 +25,11 @@ deployment:
 storage:
   - name: pihole 
     size: 1Gi
-    accessMode: readWriteOnce
+    accessMode: ReadWriteOnce
     storageClass: freenas-nfs-csi
     mountPath: "/etc/pihole"
   - name: dnsmasq
     size: 100Mi
-    accessMode: readWriteOnce
+    accessMode: ReadWriteOnce
     storageClass: freenas-nfs-csi
     mountPath: "/etc/dnsmasq.d"
