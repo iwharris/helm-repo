@@ -23,7 +23,7 @@ spec:
         {{- range .Values.config.secrets }}
         - name: {{ .name }}
           valueFrom:
-            secretKeyref:
+            secretKeyRef:
               name: {{ include "pihole.fullname" $ }}
               key: {{ .name }}
         {{- end }}
