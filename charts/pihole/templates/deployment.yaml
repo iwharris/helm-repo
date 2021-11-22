@@ -36,9 +36,15 @@ spec:
         {{- end }}
         volumeMounts:
           {{- range .Values.storage }}
-            - name: {{ include "pihole.fullname" $ }}-{{ .name }}
-              mountPath: {{ .mountPath }}
+        - name: {{ include "pihole.fullname" $ }}-{{ .name }}
+          mountPath: {{ .mountPath }}
           {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /admin
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
       restartPolicy: {{ .Values.deployment.restartPolicy }}
       volumes:
       {{- range .Values.storage }}
