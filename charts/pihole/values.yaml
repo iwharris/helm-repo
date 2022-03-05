@@ -3,6 +3,7 @@ service:
     metallb.universe.tf/address-pool: production
     metallb.universe.tf/allow-shared-ip: pihole-svc  
   externalTrafficPolicy: Local
+  # Replace this with the metallb IP address you want pihole to respond to
   loadBalancerIP: 192.168.1.2
   serviceType: LoadBalancer
 config:
@@ -15,6 +16,7 @@ config:
   - name: PIHOLE_DNS_
     value: "1.1.1.1;8.8.8.8"
 deployment:
+  # Specify an image tag to force kube to pull it
   image: "pihole/pihole:latest"
   restartPolicy: Always
   # hostAliases:
