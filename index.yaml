@@ -34,6 +34,20 @@ entries:
   freenas-nfs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-03-05T00:36:52.278550049Z"
+    dependencies:
+    - name: democratic-csi
+      repository: https://democratic-csi.github.io/charts/
+      version: 0.10.3
+    description: Customized democratic-csi chart for FreeNAS
+    digest: e7e20e0cb21ae53f3520e0b72d67269f0f8aaa7e03fe9e255cfc84634785e7b4
+    name: freenas-nfs
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/freenas-nfs-0.10.3/freenas-nfs-0.10.3.tgz
+    version: 0.10.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-14T00:58:39.949164565Z"
     dependencies:
     - name: democratic-csi
@@ -61,6 +75,16 @@ entries:
     - https://github.com/iwharris/helm-repo/releases/download/freenas-nfs-0.1.0/freenas-nfs-0.1.0.tgz
     version: 0.1.0
   pihole:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-03-05T00:36:52.432275534Z"
+    description: A simple pi-hole deployment for homelab
+    digest: f0e9092ae274e32a454b93f58fbed6d22f7671795e2a3a53fa97ce9b7fe95a8c
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/iwharris/helm-repo/releases/download/pihole-0.1.6/pihole-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-11-22T05:09:34.401072178Z"
