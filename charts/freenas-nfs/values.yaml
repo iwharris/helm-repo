@@ -90,8 +90,9 @@ democratic-csi:
         datasetEnableQuotas: true
         datasetEnableReservation: false
         datasetPermissionsMode: "0777"
-        datasetPermissionsUser: k8s-op
-        datasetPermissionsGroup: k8s
+        # Numeric user and group are now required
+        datasetPermissionsUser: 1002
+        datasetPermissionsGroup: 1004
         #datasetPermissionsAcls:
         #- "-m everyone@:full_set:allow"
         #- "-m u:kube:full_set:allow"
