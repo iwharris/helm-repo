@@ -43,8 +43,8 @@ spec:
           httpGet:
             path: /admin
             port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 60
+          periodSeconds: 30
       restartPolicy: {{ .Values.deployment.restartPolicy }}
       volumes:
       {{- range .Values.storage }}
