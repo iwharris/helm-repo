@@ -102,8 +102,9 @@ democratic-csi:
         shareAlldirs: false
         shareAllowedHosts: []
         shareAllowedNetworks: []
-        # for no_root_squash, set shareMaprootUser and shareMaprootGroup to nobody
-        shareMaprootUser: k8s-op
-        shareMaprootGroup: k8s
+        # for root_squash, set shareMaprootUser and shareMaprootGroup to nobody
+        # for no_root squash, set shareMaprootUser to root and shareMaprootGroup to wheel
+        shareMaprootUser: root
+        shareMaprootGroup: wheel
         shareMapallUser: ""
         shareMapallGroup: ""
