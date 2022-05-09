@@ -42,14 +42,14 @@ spec:
         readinessProbe:
           httpGet:
             path: /admin
-            port: http
+            port: 80
           initialDelaySeconds: 60
           timeoutSeconds: 5
           failureThreshold: 3
         livenessProbe:
           httpGet:
             path: /admin
-            port: http
+            port: 80
           initialDelaySeconds: 60
           timeoutSeconds: 5
           failureThreshold: 10
