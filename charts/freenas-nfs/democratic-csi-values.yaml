@@ -1,0 +1,146 @@
+# Use these values with the chart from 
+
+csiDriver:
+  # should be globally unique for a given cluster
+  name: "org.democratic-csi.nfs"
+
+# add note here about volume expansion requirements
+storageClasses:
+- name: freenas-nfs-csi
+  defaultClass: false
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    # for block-based storage can be ext3, ext4, xfs
+    # for nfs should be nfs
+    fsType: nfs
+      
+    # if true, volumes created from other snapshots will be
+    # zfs send/received instead of zfs cloned
+    # detachedVolumesFromSnapshots: "false"
+    
+    # if true, volumes created from other volumes will be
+    # zfs send/received instead of zfs cloned
+    # detachedVolumesFromVolumes: "false"
+
+  mountOptions:
+  - noatime
+  - nfsvers=4
+  secrets:
+    provisioner-secret:
+    controller-publish-secret:
+    node-stage-secret:
+    node-publish-secret:
+    controller-expand-secret:
+
+# if your cluster supports snapshots you may enable below
+volumeSnapshotClasses: []
+#- name: freenas-nfs-csi
+#  parameters:
+#  # if true, snapshots will be created with zfs send/receive
+#  # detachedSnapshots: "false"
+#  secrets:
+#    snapshotter-secret:
+
+driver:
+  config:
+    # please see the most up-to-date example of the corresponding config here:
+    # https://github.com/democratic-csi/democratic-csi/tree/master/examples
+    # YOU MUST COPY THE DATA HERE INLINE!
+    driver: freenas-nfs
+    instance_id:
+    httpConnection:
+      protocol: https
+      host: allspark.ianharris.io
+      port: 443
+      # use only 1 of apiKey or username/password
+      # if both are present, apiKey is preferred
+      # apiKey is only available starting in TrueNAS-12
+      apiKey: 1-Bp68MbmsAjJo2W2F4TVeO6WXlb2mWvPg8gutU6EF0uvemyFbYqo5mdZFa9ZoX6pw
+      username: root
+      # password:
+      allowInsecure: false
+      # use apiVersion 2 for TrueNAS-12 and up (will work on 11.x in some scenarios as well)
+      # leave unset for auto-detection
+      apiVersion: 2
+    sshConnection:
+      host: 192.168.100.100
+      port: 22
+      username: k8s-op
+      # use either password or key
+      # password: ""
+      privateKey: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEoQIBAAKCAQEAuznGtUusWbVP5cI8gkVo76wuP0qIGwiPyHrOIva57OF+tNGi
+        VGJDIB+iE+CNzSB083Y1cc4MB1byNt3cPljQI3+qUledJWOZXXrHA1MkhvnrWCcI
+        My8AZch632bfLKVk9vhe1txhs5edl/NsgEB20sXHYVKtPUY0v9gSkhDACECu58wM
+        7WewiaXR2SWtK2zR8wNDCkiNVmxD9npXHsIYKYlC0mJNre7oNYPfigiPVtlXo8NZ
+        JHXwJJi+WZd09OFL4ZPfUrS/ODcczAjb5J97RSrSb9YpqrknVyqYWNrfhXsJ2nmt
+        JM2+fG5oZyopPNr/Zp+dD4cjqYofl6tB+ZdaPQIBJQKCAQBbFTA8ha3KxuiZSbyS
+        ZvTHn98ltY5SVzExGSYDK+u/WPGIZfvxs0NAD2Oa957uK3cqVS7Bvi9dhD57jobS
+        OQtPijcu+jDGFMcmjsGulyaG2nJ96XmcXA4IAKp6hRKgGRxceNQxLPFCnMk1KlB1
+        vn7+wRTjPPpVKRK+McPYWyz9F7V4YegVt1G78ZiVt2a4Uk4CIGmgPpNsBzlp14cL
+        Z76jEJPdw2tWRhz0nrfvnrtb8Yn6lQxsb6qdTXA4xTmWW0IuPCZCgNg6XxdPpK0z
+        w1dIZJQZn0SmYNLRSRMiLtya9bbCMGmdMNukwPOdrKoJa4R32v5/COs/Y20hPz2Y
+        6YHtAoGBAPqyqOWwQN/ATJSZgLegHM182mByyuFZdjKhzMORr1ialsHkppX2vn7q
+        T8m2lEe1LtONie6ebCB9FgMhg2q7XmjCpgSOaINGW5n09ypy3syU7LRDbfPtJ4OH
+        WOX+GPIOIsJ85TUEc+GPrGQ1kfv2jHGNz/y1ANUp/uS/OPnRoIGJAoGBAL8vdlhl
+        2KjHBRHTAU0QbfJVWAl4xCee5zfCOaigS7exiVD7OD6iSvTimH9KdRvWcuh2sbSK
+        sn8rRxum8GkvHKIxqxpYCn953yhBlIZOdkJii9FNEppnkbmTZid4DERxtIiVhkmy
+        keCL4A9tfF36Df2NG7GquxWZsKGiU9fC+moVAoGAcy9+CKrtX+K7Zt6+mY7BICSb
+        r8YKMDAF3+l5waPNGt8+WRYHWai4Y9NwxHZ7euSLIu4BGpvQ0KgstVSWU6IyS88O
+        Ahfq1IgcP9FqpMz+lVkufFZVHQwZEuso2F/9n6WhRJo/zEBQ6xh/o6npIL1jH2qr
+        q3XCHMBErkoFa9zbCxUCgYA+AY4qgeVnK8pK+FNy8JJcbrTEzTiy522VixmeeS1Q
+        VUFKslduQnks095ueQNi+XFgJn7SxTL4z8QI999EtVVlCTCS7B8UljqJmLqMbHlh
+        o2ud086uniFsnoH+9oCE5ptqkVv8OeofT/WkI4JH/hJgEhbR1oHdffQYvwZvfYGl
+        3QKBgQDbw1uxsIzvhax7eocZ+TUo/19mFVdRWMKSRZoG9F8N4VAVHXZYEAl0Z/hb
+        Zu+H8+aYfglaocI7Z742hL3siQiTBTasDosnhjbbWY96p8j/qvUdIml66ju/uMpW
+        KozDBbv6kS4axWTV7U1e0S5scBiSlxYKNOFC2Kp4fBLhc+x9ag==
+        -----END RSA PRIVATE KEY-----
+    zfs:
+      # can be used to override defaults if necessary
+      # the example below is useful for TrueNAS 12
+      cli:
+       sudoEnabled: true
+      #
+      #  leave paths unset for auto-detection
+      #  paths:
+      #    zfs: /usr/local/sbin/zfs
+      #    zpool: /usr/local/sbin/zpool
+      #    sudo: /usr/local/bin/sudo
+      #    chroot: /usr/sbin/chroot
+      
+      # can be used to set arbitrary values on the dataset/zvol
+      # can use handlebars templates with the parameters from the storage class/CO
+      #datasetProperties:
+      #  "org.freenas:description": "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+      #  "org.freenas:test": "{{ parameters.foo }}"
+      #  "org.freenas:test2": "some value"
+      datasetProperties:
+        org.freenas:description: '{{ parameters.[csi.storage.k8s.io/pvc/namespace]
+          }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}'
+
+      datasetParentName: volume1/k8s/nfs/vols
+      # do NOT make datasetParentName and detachedSnapshotsDatasetParentName overlap
+      # they may be siblings, but neither should be nested in the other
+      detachedSnapshotsDatasetParentName: volume1/k8s/nfs/snaps
+      datasetEnableQuotas: true
+      datasetEnableReservation: false
+      datasetPermissionsMode: "0777"
+      datasetPermissionsUser: 1002
+      datasetPermissionsGroup: 1004
+      #datasetPermissionsAcls:
+      #- "-m everyone@:full_set:allow"
+      #- "-m u:kube:full_set:allow"
+
+    nfs:
+      #shareCommentTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+      shareHost: 192.168.100.100
+      shareAlldirs: false
+      shareAllowedHosts: []
+      shareAllowedNetworks: []
+      shareMaprootUser: k8s-op
+      shareMaprootGroup: k8s
+      shareMapallUser: ""
+      shareMapallGroup: ""

@@ -1,37 +1,30 @@
+config:
+  env:
+  - name: TZ
+    value: America/Edmonton
+  - name: PIHOLE_DNS_
+    value: 1.1.1.1;8.8.8.8
+  secrets:
+  - name: WEBPASSWORD
+    value: b+JK**D&uEPW4mC])>Ro}2ms
+deployment:
+  image: pihole/pihole:latest
+  restartPolicy: Always
 service:
   annotations:
     metallb.universe.tf/address-pool: production
-    metallb.universe.tf/allow-shared-ip: pihole-svc  
+    metallb.universe.tf/allow-shared-ip: pihole-svc
   externalTrafficPolicy: Local
-  # Replace this with the metallb IP address you want pihole to respond to
-  loadBalancerIP: 192.168.1.2
+  loadBalancerIP: 192.168.100.50
   serviceType: LoadBalancer
-config:
-  secrets:
-  - name: WEBPASSWORD
-    value: pihole
-  env:
-  - name: TZ
-    value: "America/Edmonton"
-  - name: PIHOLE_DNS_
-    value: "1.1.1.1;8.8.8.8"
-deployment:
-  # Specify an image tag to force kube to pull it
-  image: "pihole/pihole:latest"
-  restartPolicy: Always
-  # hostAliases:
-  # - ip: 192.168.1.100
-  #   hostnames:
-  #     - foo
-  #     - bar
 storage:
-  - name: pihole 
-    size: 1Gi
-    accessMode: ReadWriteOnce
-    storageClass: freenas-nfs-csi
-    mountPath: "/etc/pihole"
-  - name: dnsmasq
-    size: 100Mi
-    accessMode: ReadWriteOnce
-    storageClass: freenas-nfs-csi
-    mountPath: "/etc/dnsmasq.d"
+- accessMode: ReadWriteOnce
+  mountPath: /etc/pihole
+  name: pihole
+  size: 1Gi
+  storageClass: freenas-nfs-csi
+- accessMode: ReadWriteOnce
+  mountPath: /etc/dnsmasq.d
+  name: dnsmasq
+  size: 100Mi
+  storageClass: freenas-nfs-csi
